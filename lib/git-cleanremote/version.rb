@@ -1,5 +1,5 @@
 module Git
-  module Cleanremote
-    VERSION = "0.0.2"
+  class CleanRemoteVersion
+    STRING = "0.0.2"
   end
 end
