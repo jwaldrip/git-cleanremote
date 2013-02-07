@@ -14,7 +14,7 @@ cleanremote is used in the command line as a git extension. Once installed you c
 
 ```sh
 Usage:
-  git cleanremote git:clean_remote [BRANCH_NAME]
+  git cleanremote [BRANCH_NAME]
 
 Options:
   [--dryrun]
