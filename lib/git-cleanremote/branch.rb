@@ -1,5 +1,4 @@
 require 'open4'
-require 'pry'
 
 class Git::CleanRemote::Branch
 

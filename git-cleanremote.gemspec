@@ -21,6 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "open4"
 
   # gem.add_development_dependency "rspec", "~> 2.12.0" # Todo: add some specs/tests.
-  gem.add_development_dependency "pry"
 
 end
