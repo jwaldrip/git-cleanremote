@@ -7,8 +7,8 @@ module Git
 
     argument :branch_name, :default => 'master', :type => :string, :desc => "The remote branch to cleanup"
     class_option :dryrun, :type => :boolean
-    class_option :remote, :type => :string
-    desc "Cleans up a remote branch"
+    class_option :remote, :type => :string, :default => "origin"
+    desc "Cleans up a remote branch."
 
     def clean
       Cleaner.new(branch_name, options)
