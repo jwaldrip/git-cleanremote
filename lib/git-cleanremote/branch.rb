@@ -19,7 +19,7 @@ class Git::CleanRemote::Branch
     status = Open4::popen4("git push #{remote} --delete #{name}") do |pid, stdin, stdout, stderr|
       error = stderr.gets.to_s
     end
-    raise StandardError, error unless error.empty?
+    raise StandardError, error if status.to_i > 0
     true
   end
 

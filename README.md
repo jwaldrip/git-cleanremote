@@ -1,24 +1,27 @@
-# Git::Cleanremote
+# git-cleanremote
 
-TODO: Write a gem description
+Clean remote allows you clean up your remote branches
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'git-cleanremote'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install the gem:
 
     $ gem install git-cleanremote
 
 ## Usage
 
-TODO: Write usage instructions here
+cleanremote is used in the command line as a git extension. Once installed you can follow the instructions below.
+
+```sh
+Usage:
+  git-cleanremote git:clean_remote [BRANCH_NAME]
+
+Options:
+  [--dryrun]
+  [--version]
+  [--ask]            # Default: true
+  [--remote=REMOTE]  # Default: origin
+```
 
 ## Contributing
 
