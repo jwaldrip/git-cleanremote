@@ -46,6 +46,7 @@ class Git::CleanRemote::Cleaner < Thor::Shell::Color
     @merged_branches.each do |branch|
       begin
         branch.delete!
+        branch.local_delete! if options[:local]
         say [set_color("DELETED", :yellow), branch].join(" ")
       rescue => message
         say [set_color("ERROR  ", :red), branch, set_color(message, :magenta)].join(" ")

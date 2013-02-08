@@ -22,4 +22,13 @@ class Git::CleanRemote::Branch
     true
   end
 
+  def local_delete!
+    error = ''
+    status = Open4::popen4("git branch -D #{name}") do |pid, stdin, stdout, stderr|
+      error = stderr.gets.to_s
+    end
+    raise StandardError, error if status.to_i > 0
+    true
+  end
+
 end

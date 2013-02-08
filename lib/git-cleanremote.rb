@@ -7,8 +7,9 @@ module Git
     autoload :Branch, 'git-cleanremote/branch'
 
     argument :branch_name, :default => 'master', :type => :string, :desc => "The remote branch to cleanup"
-    class_option :dryrun, :type => :boolean
-    class_option :version, :type => :boolean
+    class_option :dryrun, :type => :boolean, :default => false
+    class_option :version, :type => :boolean, :default => false
+    class_option :local, :type => :boolean, :default => false
     class_option :ask, :type => :boolean, :default => true
     class_option :remote, :type => :string, :default => "origin"
     desc "Cleans up a remote branch."

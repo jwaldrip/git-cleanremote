@@ -19,7 +19,8 @@ Usage:
 Options:
   [--dryrun]
   [--version]
-  [--ask]            # Default: true
+  [--ask]            # Default: true, will ask to delete the branches
+  [--local]          # Default: false, deletes the local copy as well
   [--remote=REMOTE]  # Default: origin
 ```
 
