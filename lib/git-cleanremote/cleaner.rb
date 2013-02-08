@@ -5,9 +5,9 @@ class Git::CleanRemote::Cleaner < Thor::Shell::Color
   def initialize(branch, options={})
     @padding = 0
     return say ["git-cleanremote", Git::CleanRemoteVersion::STRING].join(' ') if options[:version]
-    options = options.dup
-    @branch = branch
-    @remote = options.delete :remote
+    options  = options.dup
+    @branch  = branch
+    @remote  = options.delete :remote
     @options = options
     if options[:dryrun]
       dryrun
@@ -24,6 +24,8 @@ class Git::CleanRemote::Cleaner < Thor::Shell::Color
       [branch.to_s, set_color("will be deleted!", :red)]
     end
     print_table array
+    count = array.count
+    say "\n" + [count, (count == 1 ? 'branch' : 'branches'), 'will be deleted!'].join(' ')
   end
 
   def run
@@ -43,15 +45,25 @@ class Git::CleanRemote::Cleaner < Thor::Shell::Color
 
   def delete_merged_branches
     say "Deleting branches on #{remote}", :blue, true
-    @merged_branches.each do |branch|
+    status  = @merged_branches.reduce({}) do |hash, branch|
+      hash[:success] ||= 0
+      hash[:error]   ||= 0
       begin
         branch.delete!
         branch.local_delete! if options[:local]
         say [set_color("DELETED", :yellow), branch].join(" ")
+        hash[:success] += 1
       rescue => message
         say [set_color("ERROR  ", :red), branch, set_color(message, :magenta)].join(" ")
+        hash[:error] += 1
       end
+      hash
     end
+    system "git fetch #{remote} --prune"
+    message = []
+    message << [status[:success], (status[:success] == 1 ? 'deletion' : 'deletions')].join(' ')
+    message << [status[:error], (status[:error] == 1 ? 'error' : 'errors')].join(' ')
+    say message.join(', ')
   end
 
   def get_merged_branches
